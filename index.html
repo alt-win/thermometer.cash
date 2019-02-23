@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thermometer Cash</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="qrcode.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://developer.bitcoin.com/badger/badgerButton-1.0.1.js"></script>
+</head>
+
+<body>
+    <div class="cashThermometer" amount=4 address="some string"></div>
+    <!-- <div id="main" class="container"> -->
+    <!-- <div id="thermometer"> -->
+    <div class="row">
+        <div class="col-sm-2">
+            <div id="stem"></div>
+            <div id="marks">
+                <div id="line">--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--</div>
+            </div>
+            <div id="merc-stem">
+                <div id="mercury"></div>
+            </div>
+            <div id="bulb"></div>
+        </div>
+        <div class="col-sm-10">
+            <div>
+                <button class="badger-button" data-to="bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g" data-satoshis="10000" data-success-callback="badgerCallback">
+                	<!-- Pay with BCH!! -->
+                	<img id="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoincash:qqtmr7mfv8lscl2kua464fuehj74pavfzc2dsmv4ha">
+                </button>
+                <script>
+                    var badgerCallback = function(txid) {
+      					console.log("Success. Transaction ID:", txid)
+
+      					var confirmedElement = document.getElementById("confirmed");
+      					confirmedElement.innerText = "Confirmed. Transaction ID: " + txid;
+    				}
+  			</script>
+            </div>
+            <!-- <script type="text/javascript">
+            
+            </script> -->
+        </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+    Address or CashID
+    <input type="input" id="address" name="Address" value="bitcoincash:qqtmr7mfv8lscl2kua464fuehj74pavfzc2dsmv4ha">
+    Fundraising Goal (in BCH)
+    <input type="input" id="amount" name="Amount" value="0.01">
+    <button id="update">Update Values</button>
+    <p>
+        <h4>Add to your website</h4>
+        Copy and paste the code below:
+    </p>
+    <textarea>
+    	<div class="cashThermometer" amount=4 address="some string"></div>
+    	<script type="text/javascript" src="https://thermometer.cash/index.js"></script>
+    </textarea>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>

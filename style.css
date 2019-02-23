@@ -1,0 +1,101 @@
+body>textarea {
+    background-color: #343D46;
+    color: white;
+    width: 440px;
+    height: 80px;
+}
+
+body {
+    margin: 0;
+    /*background-color:;*/
+}
+
+#qrcode {
+    border: 20px solid white;
+    background-color: white;
+    width: 296px;
+    height: 296px;
+}
+
+#thermometer {
+    width: 70px;
+    margin: 5% auto;
+}
+
+#far {
+    border: 4px solid black;
+    height: 400px;
+}
+
+#cel {
+    border: 4px solid black;
+    height: 400px;
+}
+
+#stem {
+    width: 20px;
+    height: 215px;
+    position: relative;
+    left: 21px;
+    z-index: 1;
+    border-radius: 50px 50px 0 0;
+    border-left: 4px solid black;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    animation-name: stem;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#marks {
+    width: 20px;
+    height: 90px;
+    position: relative;
+    bottom: 180px;
+    left: 36px;
+    z-index: 40;
+}
+
+#line {
+    line-height: .7em;
+}
+
+#merc-stem {
+    width: 20px;
+    height: 85px;
+
+    position: relative;
+    bottom: 175px;
+    left: 25px;
+}
+
+#mercury {
+    /*height values start @ 10% + (0% to 230%) 
+	2.3% is 1% on the thermometer */
+    width: 65%;
+    height: 10%;
+    position: absolute;
+    bottom: 8%;
+    z-index: 20;
+    background-color: #FF0000;
+}
+
+#bulb {
+    position: relative;
+    /*   overflow: hidden; */
+    bottom: 190px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-color: #FF0000;
+    border-radius: 50px;
+    border: 4px solid black;
+}
+
+
+h1 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 3em;
+    color: white;
+}
