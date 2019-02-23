@@ -112,6 +112,7 @@ function updateThermometer(percentageValue) {
 function updateQR(address) {
     // body...
     $("#qr").attr('src', 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + address);
+    $(".badger-button").attr('data-to',address)
     // qrcode.clear();
     // qrcode.makeCode(address);
 
