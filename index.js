@@ -83,7 +83,7 @@ async function getCashAccount(string) {
         console.error('An error ocurred', err);
     });*/
     // */
-    $.get('http://api.cashaccount.info/account/' + number + '/' + name + '', { mode: 'no-cors' }, async function(data) {
+    $.get('https://api.cashaccount.info/account/' + number + '/' + name + '', { mode: 'no-cors' }, async function(data) {
         console.log(data.information.payment[0].address);
         address = await data.information.payment[0].address;
 
@@ -130,7 +130,7 @@ async function updateBalance(address) {
 
     // balance = await data.data.balance;
     // console.log(balance);
-    $.get('http://rest.bitcoin.com/v2/address/details/' + address + '', async function(data) {
+    $.get('https://rest.bitcoin.com/v2/address/details/' + address + '', async function(data) {
 
         balance = await data.balance;
         console.log(balance);
