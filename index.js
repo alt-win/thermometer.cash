@@ -1,6 +1,7 @@
 if (typeof $ !== "function") { 
     alert("This widget requires jquery.");
 }
+
 $(document).ready(function() {
     // executes when HTML-Document is loaded and DOM is ready
 
@@ -33,7 +34,7 @@ function createBCHwidgetObj() {
         "</div>" +
         //"<div class=\"button\">" +
         //"<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>"+
-        "<button class=\"pay-button\" button-text=\"Donate BCH\" address=" + address + "></button>"
+        "<button class=\"pay-button\" button-text=\"Donate BCH\" address=" + address + " success-callback=\"updateBalance(address)\"></button>"
         /*+
                "</div>"*/
     );
@@ -45,6 +46,7 @@ function createBCHwidgetObj() {
 }
 
 createBCHwidgetObj();
+
 updateBalance(address);
 
 $("#update").on("click", function() {
