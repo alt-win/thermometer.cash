@@ -1,3 +1,6 @@
+if (typeof $ !== "function") { 
+    alert("This widget requires jquery.");
+}
 $(document).ready(function() {
     // executes when HTML-Document is loaded and DOM is ready
 
@@ -5,8 +8,8 @@ $(document).ready(function() {
 
 });
 
-var address="";
-var amount=0;
+var address = "";
+var amount = 0;
 var balance = 0;
 var percentage = 0;
 
@@ -16,7 +19,8 @@ function createBCHwidgetObj() {
     amount = $(".cashThermometer").attr("amount");
 
     $(".cashThermometer").append(
-        "<span class=\"donation-request\">Help us raise "+amount+" BCH</span>" +
+        "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://thermometer.cash/thermometer.css\">" +
+        "<span class=\"donation-request\">Help us raise " + amount + " BCH</span>" +
         "<div class=\"thermometer\">" +
         "<div id=\"stem\"></div>" +
         "<div id=\"marks\">" +
@@ -29,18 +33,19 @@ function createBCHwidgetObj() {
         "</div>" +
         //"<div class=\"button\">" +
         //"<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>"+
-        "<button class=\"pay-button\" button-text=\"Donate BCH\" address=" + address + "></button>" /*+
-        "</div>"*/
+        "<button class=\"pay-button\" button-text=\"Donate BCH\" address=" + address + "></button>"
+        /*+
+               "</div>"*/
     );
 
 
-   // updateBalance(await address);
+
 
 
 }
 
 createBCHwidgetObj();
-
+updateBalance(address);
 
 $("#update").on("click", function() {
     // body...
@@ -184,12 +189,12 @@ function updatePage(balance) {
 
 function updateTextArea() {
     // body...
-    let str = '<div class=\"cashThermometer\" amount=' + amount + ' address=\"' + address + '\"></div><script type=\"text/javascript\" src=\"https://thermometer.cash/index.js\"></script>'+
-     '<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>';
+    let str = '<div class=\"cashThermometer\" amount=' + amount + ' address=\"' + address + '\"></div><script type=\"text/javascript\" src=\"https://thermometer.cash/index.js\"></script>' +
+        '<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>';
     $("textarea").text(str);
     $(".donation-request").empty();
-    if (percentage<100) {
-    	$(".donation-request").append("Help us raise " + amount + " BCH");
-    } else {$(".donation-request").append("Goal of " + amount + " BCH raised!");}
-    
+    if (percentage < 100) {
+        $(".donation-request").append("Help us raise " + amount + " BCH");
+    } else { $(".donation-request").append("Goal of " + amount + " BCH raised!"); }
+
 }
