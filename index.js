@@ -2,7 +2,45 @@ $(document).ready(function() {
     // executes when HTML-Document is loaded and DOM is ready
 
     console.log("document is ready");
+
 });
+
+var address="";
+var amount=0;
+var balance = 0;
+var percentage = 0;
+
+function createBCHwidgetObj() {
+    // body...
+    address = $(".cashThermometer").attr("address");
+    amount = $(".cashThermometer").attr("amount");
+
+    $(".cashThermometer").append(
+        "<span class=\"donation-request\">Help us raise "+amount+" BCH</span>" +
+        "<div class=\"thermometer\">" +
+        "<div id=\"stem\"></div>" +
+        "<div id=\"marks\">" +
+        "<div id=\"line\">--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--</div>" +
+        "</div>" +
+        "<div id=\"merc-stem\">" +
+        "<div id=\"mercury\"></div>" +
+        "</div>" +
+        "<div id=\"bulb\"></div>" +
+        "</div>" +
+        //"<div class=\"button\">" +
+        //"<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>"+
+        "<button class=\"pay-button\" button-text=\"Donate BCH\" address=" + address + "></button>" /*+
+        "</div>"*/
+    );
+
+
+   // updateBalance(await address);
+
+
+}
+
+createBCHwidgetObj();
+
 
 $("#update").on("click", function() {
     // body...
@@ -12,10 +50,7 @@ $("#update").on("click", function() {
 // 	window.open(address,self);
 // });
 
-var address = "bitcoincash:pp8skudq3x5hzw8ew7vzsw8tn4k8wxsqsv0lt0mf3g";
-var amount = 0.01;
-var balance = 0;
-var percentage = 0;
+
 
 
 //$('#qrcode').empty();
@@ -110,10 +145,10 @@ function updateThermometer(percentageValue) {
     $("#mercury").css("height", adjustment + "%");
 }
 
-function updateQR(address) {
+function updateButton(address) {
     // body...
-    $("#qrcode").attr('src', 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + address);
-    $(".badger-button").attr('data-to',address)
+    $(".pay-button").attr('address', address);
+    //$(".badger-button").attr('data-to',address)
     // qrcode.clear();
     // qrcode.makeCode(address);
 
@@ -143,12 +178,18 @@ function updatePage(balance) {
     // body...
     percentage = (balance / amount) * 100;
     updateThermometer(percentage);
-    updateQR(address);
+    updateButton(address);
     updateTextArea();
 }
 
 function updateTextArea() {
     // body...
-    let str = '<div class=\"cashThermometer\" amount=' + amount + ' address=\"' + address + '\"></div><script type=\"text/javascript\" src=\"https://thermometer.cash/index.js\"></script>';
+    let str = '<div class=\"cashThermometer\" amount=' + amount + ' address=\"' + address + '\"></div><script type=\"text/javascript\" src=\"https://thermometer.cash/index.js\"></script>'+
+     '<script src=\"https://paybutton.cash/pre-release/v0.1/js/paybutton.min.js\"></script>';
     $("textarea").text(str);
+    $(".donation-request").empty();
+    if (percentage<100) {
+    	$(".donation-request").append("Help us raise " + amount + " BCH");
+    } else {$(".donation-request").append("Goal of " + amount + " BCH raised!");}
+    
 }
