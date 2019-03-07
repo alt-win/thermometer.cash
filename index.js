@@ -1,4 +1,4 @@
-if (typeof $ !== "function") { 
+if (typeof $ !== "function") {
     alert("This widget requires jquery.");
 }
 
@@ -8,6 +8,8 @@ $(document).ready(function() {
     console.log("document is ready");
 
 });
+
+
 
 var address = "";
 var amount = 0;
@@ -53,6 +55,7 @@ $("#update").on("click", function() {
     // body...
     getInput();
 });
+$("#thermometerCashTextarea").on("mousedown", copyTagsToClipboard)
 // $("#qrcode").on("click",function(){
 // 	window.open(address,self);
 // });
@@ -176,6 +179,7 @@ async function updateBalance(address) {
     $.get('https://rest.bitcoin.com/v2/address/details/' + address + '', async function(data) {
 
         balance = await data.balance;
+        balance += await data.unconfirmedBalance;
         console.log(balance);
         updatePage(await balance);
     });
@@ -200,3 +204,17 @@ function updateTextArea() {
     } else { $(".donation-request").append("Goal of " + amount + " BCH raised!"); }
 
 }
+
+
+// function copyTagsToClipboard() {
+//     var copyText = document.getElementById("thermometerCashTextarea");
+
+//     copyText.select();
+
+//      Copy the text inside the text field 
+//     document.execCommand("copy");
+
+//     $("thermometerCashTextarea").attr("title", "copied!");
+//     /* Alert the copied text */
+//     //alert("Copied");
+// }
